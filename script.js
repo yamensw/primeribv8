@@ -178,3 +178,24 @@
     if (window.innerWidth > 640) close();
   });
 })();
+// --- Mobile menu safety: close on desktop width ---
+const menuBtn = document.getElementById("menuBtn");
+const mobileMenu = document.getElementById("mobileMenu") || document.querySelector(".mobileMenu");
+
+function closeMobileMenu() {
+  if (!mobileMenu) return;
+  mobileMenu.classList.remove("open");
+  if (menuBtn) menuBtn.setAttribute("aria-expanded", "false");
+}
+
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 640) closeMobileMenu();
+});
+
+// Optional: close if user taps a link inside the mobile menu
+if (mobileMenu) {
+  mobileMenu.addEventListener("click", (e) => {
+    const a = e.target.closest("a");
+    if (a) closeMobileMenu();
+  });
+}
