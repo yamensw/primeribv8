@@ -528,3 +528,44 @@ textarea.field{ min-height: 120px; resize: vertical; }
   .heroMedia{ height: 260px; }
   section{ padding: 34px 0; }
 }
+/* =========================
+   MOBILE MENU (HIDE ON DESKTOP)
+   ========================= */
+
+/* The dropdown/panel that opens when you tap "Menu" on mobile */
+.mobileMenu,
+#mobileMenu{
+  display: none;            /* hidden by default */
+}
+
+/* When JS toggles it open */
+.mobileMenu.open,
+#mobileMenu.open{
+  display: block;
+}
+
+/* Desktop: never show the mobile menu + never show the Menu button */
+@media (min-width: 641px){
+  #menuBtn,
+  .menuBtn{
+    display: none !important;
+  }
+
+  .mobileMenu,
+  #mobileMenu{
+    display: none !important; /* <- this removes the “second menu” on desktop */
+  }
+}
+
+/* Mobile: show Menu button, hide desktop nav links */
+@media (max-width: 640px){
+  #menuBtn,
+  .menuBtn{
+    display: inline-flex !important;
+  }
+
+  /* Hide the row of links inside the navbar on mobile (use the dropdown instead) */
+  .navlinks > a{
+    display: none !important;
+  }
+}
